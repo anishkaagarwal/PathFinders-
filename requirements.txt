@@ -1,0 +1,10 @@
+streamlit
+langchain
+openai
+tiktoken
+python-dotenv
+pandas
+numpy
+requests
+faiss-cpu
+pydantic
