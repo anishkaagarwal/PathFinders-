@@ -2,8 +2,7 @@
 import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from langchain.llms import OpenAI
-from langchain.chains import ConversationChain
+
 st.markdown(
 	"""
 	<style>
@@ -203,3 +202,4 @@ if submitted:
 # --- LangChain UI for LLM-powered advice ---
 
 # Chatbot removed
+
