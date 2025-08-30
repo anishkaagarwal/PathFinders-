@@ -2,6 +2,38 @@
 import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import streamlit.components.v1 as components
+
+chatbase_code = """
+<script>
+(function(){
+  if(!window.chatbase||window.chatbase("getState")!=="initialized"){
+    window.chatbase=(...arguments)=>{
+      if(!window.chatbase.q){window.chatbase.q=[]}
+      window.chatbase.q.push(arguments)
+    };
+    window.chatbase=new Proxy(window.chatbase,{
+      get(target,prop){
+        if(prop==="q"){return target.q}
+        return(...args)=>target(prop,...args)
+      }
+    })
+  }
+  const onLoad=function(){
+    const script=document.createElement("script");
+    script.src="https://www.chatbase.co/embed.min.js";
+    script.id="Z1Mq46Kf8rj9dRSL9Yf6r";   // <-- replace with your bot ID
+    script.domain="www.chatbase.co";
+    document.body.appendChild(script)
+  };
+  if(document.readyState==="complete"){onLoad()}
+  else{window.addEventListener("load",onLoad)}
+})();
+</script>
+"""
+
+# Inject the script into Streamlit
+components.html(chatbase_code, height=0, width=0)
 
 st.markdown(
 	"""
@@ -199,7 +231,10 @@ if submitted:
 		st.markdown(f"**Recommended Courses:** {', '.join(plan[career]['Courses'])}")
 		st.markdown(f"**Next Steps:** {', '.join(plan[career]['Next Steps'])}")
 
+    
+
 # --- LangChain UI for LLM-powered advice ---
 
 # Chatbot removed
+
 
