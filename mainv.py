@@ -33,7 +33,7 @@ chatbase_code = """
 """
 
 # Inject the script into Streamlit
-components.html(chatbase_code, height=0, width=0)
+components.html(chatbase_code, height=600, width=400)
 
 st.markdown(
 	"""
@@ -236,5 +236,6 @@ if submitted:
 # --- LangChain UI for LLM-powered advice ---
 
 # Chatbot removed
+
 
 
