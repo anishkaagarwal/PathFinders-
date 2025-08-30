@@ -30,13 +30,19 @@ chatbase_code = """
   else{window.addEventListener("load",onLoad)}
 })();
 </script>
+
 <style>
-/* Make chatbot float on right side */
-#chatbase-bubble {
+/* Fixed side panel on the right */
+#chatbase-panel {
   position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
+  top: 0 !important;
+  right: 0 !important;
+  height: 100vh !important;
+  width: 380px !important;   /* adjust width */
+  background: white !important;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.15);
   z-index: 9999 !important;
+  border-left: 2px solid #eee;
 }
 </style>
 """
@@ -245,6 +251,7 @@ if submitted:
 # --- LangChain UI for LLM-powered advice ---
 
 # Chatbot removed
+
 
 
 
