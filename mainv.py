@@ -119,11 +119,20 @@ with st.form("career_form"):
 	goals = st.text_input("🎯 Your Career Goals (e.g., high salary, impact, creativity):")
 	submitted = st.form_submit_button("✨ Get Career Advice 🏃‍♂️")
 
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+creds_dict = st.secrets["google_service_account"]
+credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+
+# Authenticate and create the client
+gc = gspread.authorize(credentials)
+
+# Example: open a Google Sheet by name
+sheet = gc.open("Career Path Bot Data").sheet1
 # --- Google Sheets Integration ---
 def log_to_gsheets(name, strengths, weaknesses, interests, work_style, goals):
 	try:
 		scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-		creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+		creds = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["google_service_account"], scope)
 		client = gspread.authorize(creds)
 		sheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1CQSDaaG9IFiAd0vChBWTL3rtPJGEr1v2YerQm79Xdh4/edit?gid=0#gid=0").sheet1
 		sheet.append_row([name, strengths, weaknesses, interests, work_style, goals])
@@ -251,6 +260,7 @@ if submitted:
 # --- LangChain UI for LLM-powered advice ---
 
 # Chatbot removed
+
 
 
 
